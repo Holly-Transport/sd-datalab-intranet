@@ -1,0 +1,10 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "SD Data Lab"
+theme = "sd-lab"
+
+[params]
+  intro = "This is the intro, it is a parameter that you can set anywhere in the site. Same for the image. You can change this dynamically to fit whatever you want to be here. The text is aligned as bottom of div."
+  introimage = "/images/placeholder.png"
+  labLeads="Meet your lab leads dynamic description is here."
+  joinDescription = "Join description goes here."

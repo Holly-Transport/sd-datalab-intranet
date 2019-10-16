@@ -1,0 +1,133 @@
+{{ define "main" }}
+
+<section>
+  <div class="container mt-5">
+    <div class="row align-items-end">
+      <div class="col-3">
+          <img class="img-fluid" src=" {{ $.Site.Params.introimage }}" alt="Intro Image">
+      </div>
+      <div class="col-8">
+            {{ $.Site.Params.intro }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container pt-5 mt-5">
+    <!-- row for title -->
+    <div class="row mt-5">
+      <div class="col">
+        <h2>Recent and Upcoming Activities</h2>
+      </div>
+    </div>
+    <!-- row for cards -->
+    <div class="row mt-3 mb-3">
+      <!-- loop through all the content in content/activity -->
+      <!-- limit to 6 -->
+      {{ range first 6  (where .Site.RegularPages "Section" "activity") }}
+          <div class="col-4">
+            <h5>{{ .Params.happensOn}}</h5>
+            <div class="card rounded-0 border-0">
+                <img src="{{ .Params.image }}" class="card-img-top img-fluid" alt="Recent image">
+                <div class="card-body">
+                  <h5 class="card-title">{{ .Title }}</h5>
+                  <div class="mt-2 h6">
+                       {{ .Params.location}}
+                  </div>
+                  <p class="card-text">{{ .Description }}</p>
+                  <div class="text-center mr-auto">
+                    <a target="_blank" href="{{ .Params.rsvplink }}" class="btn btn-primary btn-sm border-0  rounded-0">RSVP</a>
+                  </div>
+                </div>
+              </div>
+          </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="container pt-5 mt-5">
+    <!-- row for title -->
+    <div class="row mt-5">
+      <div class="col">
+        <h2>Past Activities and Materials</h2>
+      </div>
+    </div>
+    <!-- row for cards -->
+    <div class="row mt-3 mb-3">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th  class="border-0" scope="col"></th>
+            <th  class="border-0" scope="col">Activity</th>
+            <th  class="border-0" scope="col">Date</th>
+            <th  class="border-0" scope="col">Type</th>
+            <th  class="border-0" scope="col">Materials</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- loop through all the content in content/activity -->
+          {{ range first 4 (where .Site.RegularPages "Section" "materials") }}
+              <tr>
+                <td><img style="width:100px;" src="{{.Params.image}}"></td>
+                <td> {{ .Title }}</td>
+                <td> {{ .Params.happenedOn}}</td>
+                <td> {{ .Params.type }}</td>
+                <td> <a target="_blank" href="{{ .Params.materialsLink }}"> {{ .Params.materials }}</a></td>
+              </tr>
+          {{ end }}
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="container pt-5 mt-5">
+    <!-- row for title -->
+    <div class="row mt-5">
+      <div class="col">
+        <h2>Meet your lab leads</h2>
+        <p>{{ .Site.Params.labLeads }}</p>
+      </div>
+    </div>
+    <!-- row for cards -->
+    <div class="row mt-3 mb-3">
+      <!-- loop through all the content in content/activity -->
+      <!-- limit to 6 -->
+      {{ range first 15  (where .Site.RegularPages "Section" "lableads") }}
+          <div class="col-4">
+            <div class="row">
+              <div class="col-3">
+                <img src="{{ .Params.image }}" class="img-fluid" alt="Human">
+              </div>
+              <div class="col-9">
+                  <h6>{{ .Params.Name }}, {{ .Params.position }} , {{ .Params.unit }}</h6>
+                  <p><a target="_blank" href="{{.Params.teamLink}}"></a>{{.Params.team}}</p>
+                  <p><a href="mailto:{{ .Params.contact }}">Contact</a></p>
+              </div>
+            </div>
+          </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container pt-5 mt-5">
+    <!-- row for title -->
+    <div class="row mt-5">
+      <div class="col">
+        <h2>Join the SD Data Lab Community of Practice</h2>
+        <p>{{ .Site.Params.joinDescription }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}
